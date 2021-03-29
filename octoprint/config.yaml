@@ -1,0 +1,41 @@
+events:
+    enabled: true
+    subscriptions:
+    -   command: /home/pi/send_fan.sh temp
+        enabled: true
+        event:
+        - Connected
+        type: system
+    -   command: /home/pi/send_fan.sh start
+        enabled: true
+        event:
+        - PrintStarted
+        type: system
+    -   command: /home/pi/send_fan.sh stop
+        enabled: true
+        event:
+        - PrintFailed
+        - PrintDone
+        - PrintCancelled
+        - Disconnected
+        type: system
+system:
+    actions:
+    -   action: Start Fan
+        command: /home/pi/send_fan.sh start
+        name: Start Fan
+    -   action: Stop Fan
+        command: /home/pi/send_fan.sh stop
+        name: Stop Fan
+    -   action: Start Fan FastMode
+        command: /home/pi/send_fan.sh fast
+        name: Start Fan FastMode
+    -   action: Set 30
+        command: /home/pi/send_fan.sh pwm:30%
+        name: Set 30%
+    -   action: Set 50
+        command: /home/pi/send_fan.sh pwm:50%
+        name: Set 50%
+    -   action: Set 100
+        command: /home/pi/send_fan.sh pwm:100%
+        name: Set 100%
